@@ -24,7 +24,7 @@ export default function Home() {
         </div>
       </nav>
       <h1 className="my-5 text-3xl font-light md:my-8">Gyms:</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-5">
         {data.map((gym) => (
           <div
             key={gym.id}

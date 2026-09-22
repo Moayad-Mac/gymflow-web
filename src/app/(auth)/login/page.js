@@ -103,7 +103,7 @@ export default function Login() {
             disabled
             className="cursor-not-allowed bg-blue-300 mx-auto block mt-10 p-1 px-4 rounded-lg text-white text-lg"
           >
-            loging in ...
+            logging in ...
           </button>
         )}
         {!isPending && (
