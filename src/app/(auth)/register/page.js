@@ -3,11 +3,13 @@ import useApiFetch from "@/app/lib/apiFetch";
 import Link from "next/link";
 import React, { useState } from "react";
 import useSWR from "swr";
+import { useRouter } from "next/navigation";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const fetcher = (url) => fetch(API_URL + url).then((r) => r.json());
 
 export default function Register() {
+  const router = useRouter();
   const apiFetch = useApiFetch();
   const [isPending, setIsPending] = useState(false);
   const [globalError, setGlobalError] = useState("");
@@ -46,6 +48,14 @@ export default function Register() {
       localStorage.setItem("token", data.data.token);
       localStorage.setItem("user", JSON.stringify(data.data.user));
       localStorage.setItem("userRole", JSON.stringify(data.data.userRole));
+
+      if (data.data.userRole.role == "staff") {
+        router.push("/staff/classes");
+      } else if (data.data.userRole.role == "trainer") {
+        router.push("/trainer");
+      } else {
+        router.push("/member");
+      }
     }
 
     setIsPending(false);

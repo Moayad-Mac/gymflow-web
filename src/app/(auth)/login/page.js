@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import useApiFetch from "@/app/lib/apiFetch";
 
 export default function Login() {
+  const router = useRouter();
   const apiFetch = useApiFetch();
   const [isPending, setIsPending] = useState(false);
   const [golbalError, setGlobalError] = useState("");
@@ -35,6 +37,16 @@ export default function Login() {
       localStorage.setItem("token", data.data.token);
       localStorage.setItem("user", JSON.stringify(data.data.user));
       localStorage.setItem("userRole", JSON.stringify(data.data.userRole));
+
+      console.log(data.data.userRole);
+
+      if (data.data.userRole.role == "staff") {
+        router.push("/staff/classes");
+      } else if (data.data.userRole.role == "trainer") {
+        router.push("/trainer");
+      } else {
+        router.push("/member");
+      }
     }
 
     setIsPending(false);

@@ -15,7 +15,12 @@ export default function Subscriptions() {
 
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>error, pls try again later</div>;
-  if (data.response.length === 0) return <div>no subscriptions yet</div>;
+  if (data.response.length === 0)
+    return (
+      <div className="w-full my-10 text-xl text-center">
+        no subscriptions yet
+      </div>
+    );
   return (
     <div className="text-center">
       <Link
